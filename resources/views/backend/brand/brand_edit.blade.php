@@ -1,0 +1,131 @@
+@extends('admin.admin_dashboard')
+@section('admin')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div class="page-content"> 
+
+
+
+
+
+
+
+				<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">Edit Brand</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="{{Route('adminDashboard')}}"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Edit Brand</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+				 
+					</div>
+				</div>
+				<!--end breadcrumb-->
+				<div class="container">
+					<div class="main-body">
+						<div class="row">
+					
+
+<div class="col-lg-12">
+<section>
+    <main id="content" role="main" class="w-full  mx-auto">
+        <div class="bg-white  shadow-lg  rounded-xl">
+            <div class="p-4 sm:p-7">
+                <div class="text-center">
+                    <div class="flex items-center justify-center mb-8 text-2xl font-bold">
+                        <img src="{{asset('adminbackend/assets/images/logo-img.png')}}" class="w-52" alt="">
+
+                    </div>
+                    <h1 class="block text-lg font-bold text-gray-800">Update Brand Info</h1>
+                </div>
+
+                <div class="mt-5">
+                    <form method="POST" action="{{Route('update.brand')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $brand->id }}">
+                        <input type="hidden" name="old_image" value="{{ $brand->brand_image }}">
+                        <div class="grid gap-y-4">
+                            
+                            <div>
+                                <label for="new_password" class="block mb-2 ml-1 text-xs font-semibold ">Brand Name
+                                </label>
+                                <div class="relative">
+                                    <input type="text" name="brand_name"  value="{{ $brand->brand_name }}"
+                                        class="block w-full  px-4 py-3 text-sm border-2 border-gray-200 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                        >
+                                       
+                                </div>
+
+                            </div>
+                           
+                            <div>
+                                <label for="Photo" class="block mb-2 ml-1 text-xs font-semibold ">Brand Image
+                                </label>
+                                <div class="relative">
+                                    
+                                    <input type="file" name="brand_image" id="image" 
+                                        class="block w-full  px-4 py-3 text-sm border-2 border-gray-200 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                        >
+                                       
+                                </div>
+
+                            </div>
+                            
+			<div class="row mb-3">
+				
+				<div class="col-sm-12 text-secondary">
+					 <img id="showImage" src="{{asset($brand->brand_image)}}" alt="Brand image" style="width:100px; height: 100px;"  >
+				</div>
+			</div>
+                            
+                            
+                            <button type="submit"
+                                class="inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white transition-all bg-red-600 border border-transparent rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Update
+                                Brand Info.</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+</section>
+
+
+	 
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+
+
+</script>
+
+
+
+@endsection
